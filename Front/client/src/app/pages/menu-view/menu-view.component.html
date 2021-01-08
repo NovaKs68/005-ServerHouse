@@ -1,0 +1,17 @@
+
+<div id="whiteBox"></div>
+<div id="mainButton">
+  <button type="button" class="btn btn-light mainButton" id="buttonAdd" (click)="subButtonAdd()">Ajouter des fichiers</button>
+  <button type="button" class="btn btn-light mainButton" id="buttonSee" (click)="subButtonSee()">Voir les fichiers</button>
+</div>
+
+<div id="subButtonAdd" [@subButtonAddDisplay]="subButtonAddDisplay">
+  <button routerLink="/" type="button" class="btn btn-light secondButton subAddFiles" id="buttonAddImages">Photos</button>
+  <button routerLink="/" type="button" class="btn btn-light secondButton subAddFiles" id="buttonAddVideos">Vidéos</button>
+  <button routerLink="/" type="button" class="btn btn-light secondButton subAddFiles" id="buttonAddFiles">Documents</button>
+</div>
+
+<div id="subButtonSee" [@subButtonSeeDisplay]="subButtonSeeDisplay">
+  <button routerLink="/" type="button" class="btn btn-light secondButton subSeeFiles">Médias</button>
+  <button routerLink="/" type="button" class="btn btn-light secondButton subSeeFiles">Documents</button>
+</div>

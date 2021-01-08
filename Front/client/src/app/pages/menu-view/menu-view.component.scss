@@ -1,0 +1,51 @@
+#mainButton {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  z-index: 7;
+  display: flex;
+  justify-content: space-around;
+}
+
+#subButtonAdd {
+  position: absolute;
+  top: 40%;
+  width: 60%;
+  left: 5%;
+  z-index: 0;
+  display: flex;
+  justify-content: space-around;
+  /*animation-name: subButtonAdd;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;*/
+}
+
+#subButtonSee {
+  position: absolute;
+  top: 40%;
+  width: 45%;
+  right: 5%;
+  z-index: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+#whiteBox {
+  position: absolute;
+  top: 120px;
+  height: 40%;
+  z-index: 1;
+  width: 100%;
+  background-color: #393b41;
+}
+
+.btn {
+  height: 120px;
+  width: 300px;
+}
+
+/*@keyframes subButtonAdd {
+  from {top: 40%}
+  to {margin-top: 135px}
+}*/
+
