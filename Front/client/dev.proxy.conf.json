@@ -1,0 +1,16 @@
+{
+  "/api": {
+    "target": "http://serverhome-node-dev:8080",
+    "secure": false,
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "logLevel": "debug"
+  },
+  "/socket.io": {
+    "target": "http://serverhome-node-dev:8080/socket.io",
+    "ws": true,
+    "logLevel": "debug"
+  }
+
+}

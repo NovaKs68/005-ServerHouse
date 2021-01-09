@@ -1,0 +1,57 @@
+version: '3.1'
+
+services:
+
+
+  serverhome-web-dev:
+    container_name: serverhome-web-dev
+    build:
+      context: ./Front/client
+      dockerfile: Dockerfile-dev
+    command: npm run start-docker
+    volumes:
+      - ./Front/client:/app
+      - /app/node_modules
+    ports:
+      - 4200:4200
+    depends_on:
+      - serverhome-node-dev
+    env_file:
+      - ./.env
+
+
+  serverhome-node-dev:
+    container_name: serverhome-node-dev
+    build:
+      context: ./Back
+      dockerfile: Dockerfile-dev
+    command: ["nodemon", "server.js"]
+    ports:
+      - 8080:8080
+    volumes:
+      - ./Back:/app
+      - /app/node_modules
+    depends_on:
+      - mariadb
+    env_file:
+      - ./.env
+
+  mariadb:
+    container_name: serverhome-bdd-dev
+    build:
+      context: BDD
+      dockerfile: Dockerfile-dev
+    volumes:
+      - ./BDD/data:/var/lib/mysql:z
+    env_file:
+      - ./.env
+    expose:
+      - 3306
+
+  adminer:
+    container_name: serverhome-adminer-dev
+    image: adminer
+    depends_on:
+      - mariadb
+    ports:
+      - ${PORT_ADMINER}:8080

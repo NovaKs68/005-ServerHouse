@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  serverhome-web:
+    container_name: serverHome-web
+    build:
+      context: ./Front/client
+    ports:
+      - ${PORT_ANGULAR}:80
+    depends_on:
+      - serverhome-node
+    env_file:
+      - ./.env
+
+
+  serverhome-node:
+    container_name: serverhome-node
+    build:
+      context: ./Back
+      dockerfile: Dockerfile
+    ports:
+      - ${PORT_BACK}:8080
+    depends_on:
+      - mariadb
+    volumes:
+      - ./Back/log:/app/Back/log:z
+    env_file:
+      - ./.env
+
+  mariadb:
+    container_name: serverhome-bdd
+    build:
+      context: BDD
+      dockerfile: Dockerfile
+    volumes:
+      - ./BDD/data:/var/lib/mysql:z
+    env_file:
+      - ./.env
+    expose:
+      - 3306
+
+  adminer:
+    container_name: serverhome-adminer
+    image: adminer
+    depends_on:
+      - mariadb
+    ports:
+      - ${PORT_ADMINER}:8080
